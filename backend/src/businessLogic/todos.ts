@@ -7,7 +7,7 @@ import { CreateTodoRequest } from '../requests/CreateTodoRequest'
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest'
 
 const todoAccess = new TodosAccess()
-
+const bucketName = process.env.IMAGES_S3_BUCKET
 export async function getAllTodos(userId: string): Promise<TodoItem[]> {
   return todoAccess.getAllTodos(userId)
 }
@@ -25,7 +25,8 @@ export async function createTodo(
     name: createTodoRequest.name,
     dueDate: createTodoRequest.dueDate,
     done: false,
-    createdAt: new Date().toISOString()
+    createdAt: new Date().toISOString(),
+    attachmentUrl: `https://${bucketName}.s3.us-east-2.amazonaws.com/${itemId}`
   })
 }
 
