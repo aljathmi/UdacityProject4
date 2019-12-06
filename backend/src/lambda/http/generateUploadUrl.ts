@@ -21,6 +21,4 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
       uploadUrl: signedURL
     })
   }
-  
-  return undefined
 }
